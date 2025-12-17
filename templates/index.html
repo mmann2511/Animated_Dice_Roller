@@ -1,0 +1,82 @@
+<head>
+	<title>Dice Roller</title>
+	<link rel="stylesheet" href="/static/style.css">
+</head>
+
+<html>
+	<body>
+		<h1>Dice Roller</h1>
+
+			<input id="expr" placeholder="2d6+3">
+			<button id="rollBtn">Roll</button>      
+
+			<div id="result"></div>
+
+				<script>
+					const button = document.getElementById("rollBtn");
+					const input = document.getElementById("expr");
+					const resultDiv = document.getElementById("result");
+
+					button.addEventListener("click", () => {
+						const expr = input.value.trim();
+						
+						if (!expr) {
+							resultDiv.innerText = "Please enter a dice expression.";
+							return;
+						}
+						const countPart = expr.split("d")[0];
+        				const count = countPart === "" ? 1 : parseInt(countPart);
+
+						const sides = parseInt(
+							expr.split("d")[1].split(/[+-]/)[0]
+						)
+						
+						const rollAnimation = setInterval(() => {
+							let animationHTML = "";
+
+							for (let i = 0; i < count; i++) {
+								animationHTML += `
+									<div class="die d${sides}">${Math.floor(Math.random() * sides) + 1}</div>
+								`;
+							}
+							resultDiv.innerHTML = animationHTML; 
+						}, 100);   
+							
+						fetch(`/api/roll?expr=${encodeURIComponent(expr)}`)
+							.then(response => response.json())
+							.then(data => {
+				
+								if (data.error) {
+									clearInterval(rollAnimation);
+									resultDiv.innerHTML = `<div class="error">${data.error}</div>`;
+									return;
+								}
+								setTimeout(() => {
+									clearInterval(rollAnimation);
+									resultDiv.classList.remove("rolling");
+										
+									let dice;
+									
+									if (sides === 6) {
+										dice = data.rolls
+											.map(r => `<div class="die d${sides}">${r}</div>`)
+											.join(" ");
+									}
+									else {
+										dice = data.rolls
+											.map(r => `<span class="die">${r}</span>`)
+											.join(" ");
+									}
+										const modifier = data.modifier
+										const total = data.total    
+
+										resultDiv.innerHTML =
+											`<div style="font-size: 48px;">${dice}</div>
+												Modifier: ${modifier >= 0 ? "+" : ""}${modifier}<br>
+												Total: ${total}`;  
+								}, 600);              
+							});
+					});
+				</script>    
+	</body>
+</html>        

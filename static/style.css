@@ -1,0 +1,63 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    text-align: center;
+    padding-top: 50px;
+}
+
+input {
+    font-size: 18px;
+    padding: 6px;
+    width: 150px;
+}
+
+button {
+    font-size: 18px;
+    padding: 6px 12px;
+    margin-left: 5px;
+    cursor: pointer;
+}
+
+#result {
+    margin-top: 30px;
+    font-size: 20px;
+}
+
+.error {
+    color: #b00020;
+    font-weight: bold;
+    margin-top: 20px;
+}
+
+.die {
+
+    width: 60px;
+    height: 60px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin: 6px;
+
+    font-size: 26px;
+    font-weight: bold;
+
+    border-radius: 10px;
+    background: linear-gradient(145deg, #ffffff, #dcdcdc);
+
+    box-shadow:
+        0 6px 12px rgba(0, 0, 0, 0.25),
+        inset 0 2px 4px rgba(255, 255, 255, 0.8);
+    
+}
+
+
+@keyframes roll {
+    0%  { transform: rotate(0deg) scale(1); }
+    30%  { transform: rotate(10deg) scale(1.1); }
+    60%  { transform: rotate(-10deg) scale(1.05); }
+    100%  { transform: rotate(0deg) scale(1); }
+}
+
+.rolling .die {
+    animation: roll 0.4s ease-in-out infinite;
+}
