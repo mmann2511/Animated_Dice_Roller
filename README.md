@@ -11,6 +11,16 @@ This project was built as a learning exercise to explore:
 
 ---
 
+## 🧭 Why This Project Exists
+
+My friends and I play **Dungeons & Dragons every weekend**, and we’re constantly rolling dice.
+I wanted to use something familiar and fun as a way to teach myself the **basics of full-stack development** — specifically how a backend communicates with a frontend and how UI feedback works.
+
+This project focuses on building a clean, correct dice-rolling system with animated feedback while keeping the logic authoritative on the server.
+It’s intentionally simple by design and serves as a foundation for future goals, including experimenting with **3D-rendered dice** and more advanced visual effects
+
+---
+
 ## ✨ Features
 
 * Supports dice expressions like:
@@ -143,6 +153,20 @@ http://127.0.0.1:5000
 * Dice animation is implemented entirely with **CSS transforms**
 * The animation is purely visual — roll results are calculated server-side
 * Final values are always authoritative
+
+---
+
+## 📸 Screenshots
+**Main Interface**
+<br>
+<img src="https://github.com/user-attachments/assets/35cdc1e5-b6ac-4308-a432-fd91f607d1f4" width="900" alt="Main dice roller interface" />
+
+<br><br>
+
+**Roll Result with Modifier**
+<br>
+<img src="https://github.com/user-attachments/assets/9fe4e3c9-cccb-49c6-8208-ffc865ccab31" width="900" alt="Dice roll result with modifier applied" />
+
 
 ---
 
